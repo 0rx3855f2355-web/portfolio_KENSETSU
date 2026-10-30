@@ -12,9 +12,13 @@
       --light-bg: #f5f7fa;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', "Helvetica Neue", Arial, sans-serif;
       background: var(--light-bg);
       color: #333;
     }
@@ -27,6 +31,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     .logo {
       font-size: 26px;
@@ -38,6 +45,10 @@
       margin-left: 20px;
       text-decoration: none;
       font-size: 14px;
+      transition: opacity 0.2s;
+    }
+    nav a:hover {
+      opacity: 0.8;
     }
 
     /* ====== ヒーロー ====== */
@@ -52,7 +63,7 @@
       margin-bottom: 10px;
     }
 
-    /* ====== 3カラム ====== */
+    /* ====== 3カラム（ABOUT） ====== */
     .services {
       max-width: 1100px;
       margin: 60px auto;
@@ -66,7 +77,11 @@
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     }
 
     /* ====== プロジェクト ====== */
@@ -80,19 +95,25 @@
     }
     .project-card {
       background: #fff;
-      padding: 20px;
-      border-radius: 10px;
+      padding: 28px;
+      border-radius: 12px;
       text-decoration: none;
       color: #333;
       border: 1px solid #ddd;
-      transition: 0.25s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.25s, box-shadow 0.25s;
+      display: block;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     }
 
     /* ====== 問い合わせ ====== */
     #contact {
       max-width: 800px;
       margin: 60px auto;
-      padding: 20px;
+      padding: 0 20px;
     }
 
     /* ====== フッター ====== */
@@ -103,6 +124,21 @@
       padding: 20px;
       margin-top: 60px;
       font-size: 14px;
+    }
+
+    /* ====== レスポンシブ調整 ====== */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+      }
+      nav a {
+        margin: 0 10px;
+      }
+      .hero h2 {
+        font-size: 28px;
+      }
     }
   </style>
 </head>
@@ -142,7 +178,7 @@
     </div>
   </section>
 
-  <!-- LEARNING（建設業・資格・目標 / グラフ削除版） -->
+  <!-- LEARNING -->
   <section id="learning" style="max-width:1100px; margin:60px auto; padding:0 20px;">
     <h2 style="font-size:28px; color:#0a3d62; border-left:6px solid #0a3d62; padding-left:10px;">
       技術習得・保有資格・目標
@@ -175,7 +211,6 @@
         <li><strong>【専門・その他】</strong> 酸欠危険作業等に係る業務、粉じん作業の業務、普通自動車第一種運転免許</li>
       </ul>
 
-
     </div>
   </section>
 
@@ -188,24 +223,24 @@
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:25px;">
       <a class="project-card" 
          href="https://www.yonden.co.jp/cnt_landl/2307/promenade.html"
-         style="display:block; background:#fff; padding:28px; border-radius:12px; 
-                box-shadow:0 4px 12px rgba(0,0,0,0.1); text-decoration:none; color:#333;">
+         target="_blank"
+         rel="noopener noreferrer">
         <h3 style="margin-top:0; color:#0a3d62;">西条火力発電所</h3>
         <p>愛媛県にある最新鋭の石炭火力発電所</p>
       </a>
 
       <a class="project-card" 
          href="https://www.osakagas.co.jp/company/renewable_energy/business/detail_biomass/biomass_hirohata.html"
-         style="display:block; background:#fff; padding:28px; border-radius:12px; 
-                box-shadow:0 4px 12px rgba(0,0,0,0.1); text-decoration:none; color:#333;">
+         target="_blank"
+         rel="noopener noreferrer">
         <h3 style="margin-top:0; color:#0a3d62;">広畑バイオマス発電所</h3>
         <p>再生可能エネルギーの1つであるバイオマス発電所</p>
       </a>
 
       <a class="project-card" 
          href="https://www.jx-nmm.com/company/industry/functional/"
-         style="display:block; background:#fff; padding:28px; border-radius:12px; 
-                box-shadow:0 4px 12px rgba(0,0,0,0.1); text-decoration:none; color:#333;">
+         target="_blank"
+         rel="noopener noreferrer">
         <h3 style="margin-top:0; color:#0a3d62;">JX金属日立銅箔工場</h3>
         <p>電子材料などの銅箔製造拠点</p>
       </a>
@@ -213,16 +248,17 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" style="max-width:800px; margin:60px auto; padding:0 20px;">
+  <section id="contact">
     <h2 style="font-size:28px; color:#0a3d62; border-left:6px solid #0a3d62; padding-left:10px;">
       お問い合わせ
     </h2>
 
-    <div style="background:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); margin-top:20px;">
-      <!-- Googleフォーム埋め込み -->
+    <div style="background:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); margin-top:20px; text-align:center;">
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc1BL3ms1Vym8VJwKwtzNe5WMuba2WubszB5Jehcdu4LHhNkQ/viewform?embedded=true" 
-      width="640" height="957" frameborder="0" marginheight="0" marginwidth="0">
-      読み込んでいます…
+              style="width: 100%; max-width: 640px; height: 950px; border: none;" 
+              marginheight="0" 
+              marginwidth="0">
+        読み込んでいます…
       </iframe>
     </div>
   </section>
